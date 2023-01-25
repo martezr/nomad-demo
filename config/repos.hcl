@@ -1,17 +1,14 @@
-repository "infrastructure" {
+source "git_repository" "nomad-demo" {
   url      = "https://github.com/martezr/nomad-demo.git"
   interval = "15m"
-  path     = "/infrastructure"
   ref {
     branch = "main"
   }
 }
 
-repository "apps" {
-  url      = "https://github.com/martezr/nomad-demo.git"
-  interval = "30s"
-  path     = "/apps"
-  ref {
-    branch = "main"
-  }
+app "nomad_job" "infrastructure" {
+  name     = "infrastructure"
+  interval = "15m"
+  path     = "/infrastructure"
+  source   = source.git_repository.nomad-demo
 }

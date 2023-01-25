@@ -1,8 +1,6 @@
-repository "multi" {
-  url      = "https://github.com/martezr/nomad-demo.git"
-  interval = "30s"
+app "nomad_job" "apps" {
+  name     = "apps"
+  interval = "15m"
   path     = "/apps"
-  ref {
-    branch = "main"
-  }
+  source   = source.git_repository.nomad-demo
 }
